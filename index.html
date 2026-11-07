@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kfanly — Learn K-pop &amp; K-drama Korean</title>
+<meta name="description" content="Kfanly is a Korean-learning app for K-pop and K-drama fans: bite-size episodes, real fan phrases, games and daily streaks with Bongi, your lightstick study buddy. Coming soon to iPhone.">
+<meta name="theme-color" content="#7B5CFF">
+<meta property="og:title" content="Kfanly — Learn K-pop & K-drama Korean">
+<meta property="og:description" content="Learn the Korean you hear in K-pop and K-dramas, one bite-size episode at a time.">
+<meta property="og:image" content="https://kfanly.com/og.jpg">
+<meta property="og:url" content="https://kfanly.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/app-icon.png">
+<style>
+  :root { --brand:#7B5CFF; --brand-deep:#5B3FE0; --violet:#B44DFF; --pink:#FF5FA2; --ink:#16112A; --soft:#5C5873; --faint:#8E8AA3; --line:#E7E4F2; --bg:#F6F4FC; --tint:#EFEAFF; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "PingFang SC", "Noto Sans CJK", Roboto, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--brand-deep); }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 22px; }
+
+  /* Header */
+  header.top { position:sticky; top:0; z-index:5; background:rgba(246,244,252,.85); backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid rgba(231,228,242,.7); }
+  header.top .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:21px; letter-spacing:-.4px; color:var(--ink); text-decoration:none; }
+  .logo img { width:34px; height:34px; border-radius:10px; }
+  .logo b { color:var(--pink); }
+  nav a { margin-left:22px; color:var(--soft); text-decoration:none; font-weight:600; font-size:15px; }
+  nav a:hover { color:var(--ink); }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg, var(--brand), var(--violet) 55%, var(--pink)); color:#fff; overflow:hidden; position:relative; }
+  .hero::after { content:"팬"; position:absolute; right:-40px; bottom:-120px; font-size:460px; font-weight:800; color:rgba(255,255,255,.07); line-height:1; }
+  .hero .wrap { display:grid; grid-template-columns:1.15fr .85fr; gap:30px; align-items:center; padding-top:70px; padding-bottom:80px; position:relative; z-index:1; }
+  .eyebrow { display:inline-block; background:rgba(255,255,255,.18); border-radius:999px; padding:6px 14px; font-weight:700; font-size:13px; letter-spacing:.4px; }
+  h1 { font-size:58px; line-height:1.05; letter-spacing:-1.5px; margin:18px 0 0; font-weight:850; }
+  .hero p.lead { font-size:19px; color:rgba(255,255,255,.92); max-width:520px; margin:18px 0 0; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:14px 22px; font-weight:800; font-size:16px; text-decoration:none; }
+  .btn.white { background:#fff; color:var(--brand-deep); box-shadow:0 10px 30px rgba(40,10,90,.25); }
+  .btn.ghost { color:#fff; border:2px solid rgba(255,255,255,.55); }
+  .soon { margin-top:14px; font-size:13.5px; color:rgba(255,255,255,.85); }
+  .hero-art { display:flex; justify-content:center; }
+  .hero-art img { width:min(380px, 90%); border-radius:40px; box-shadow:0 30px 80px rgba(40,10,90,.35); transform:rotate(-3deg); }
+
+  /* Sections */
+  section { padding:80px 0; }
+  .kicker { color:var(--brand); font-weight:800; letter-spacing:1.4px; font-size:13px; text-transform:uppercase; }
+  h2 { font-size:38px; letter-spacing:-.8px; line-height:1.15; margin:8px 0 0; }
+  .sub { color:var(--soft); font-size:17px; max-width:620px; margin-top:12px; }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-top:36px; }
+  .card { background:#fff; border-radius:22px; padding:24px; box-shadow:0 8px 30px rgba(60,40,140,.06); }
+  .card .ico { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; font-size:22px; background:var(--tint); }
+  .card h3 { margin:14px 0 6px; font-size:18px; }
+  .card p { margin:0; color:var(--soft); font-size:15px; }
+
+  .seasons { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-top:32px; }
+  .season { background:#fff; border-radius:18px; padding:18px; border:1.5px solid var(--line); }
+  .season small { color:var(--brand); font-weight:800; letter-spacing:1px; font-size:11.5px; }
+  .season b { display:block; font-size:16px; margin-top:4px; }
+  .season span { display:block; color:var(--faint); font-size:13px; margin-top:4px; }
+
+  .langs { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .lang { background:#fff; border-radius:999px; padding:10px 16px; font-weight:700; border:1.5px solid var(--line); }
+
+  .bongi-band { background:linear-gradient(135deg, #2A2140, #3A2A66); color:#fff; border-radius:28px; padding:40px; display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:center; }
+  .bongi-band img { width:150px; border-radius:30px; }
+  .bongi-band h2 { color:#fff; }
+  .bongi-band p { color:rgba(255,255,255,.85); font-size:17px; margin:10px 0 0; }
+
+  details { background:#fff; border-radius:16px; padding:18px 20px; margin-top:12px; box-shadow:0 4px 18px rgba(60,40,140,.05); }
+  summary { font-weight:750; cursor:pointer; font-size:16.5px; }
+  details p { color:var(--soft); margin:10px 0 0; }
+
+  .support { background:#fff; border-radius:24px; padding:30px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; box-shadow:0 8px 30px rgba(60,40,140,.06); }
+  .support h3 { margin:0; font-size:22px; }
+  .support p { margin:6px 0 0; color:var(--soft); }
+
+  footer { padding:40px 0 50px; color:var(--faint); font-size:14px; }
+  footer .wrap { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:24px; }
+  footer a { color:var(--soft); margin-right:16px; text-decoration:none; }
+  footer a:hover { color:var(--ink); }
+
+  @media (max-width:860px) {
+    .hero .wrap { grid-template-columns:1fr; padding-top:46px; padding-bottom:56px; }
+    h1 { font-size:42px; }
+    .hero-art img { width:240px; }
+    .grid { grid-template-columns:1fr; }
+    .seasons { grid-template-columns:repeat(2, 1fr); }
+    nav a:not(.keep) { display:none; }
+    .bongi-band { grid-template-columns:1fr; text-align:center; justify-items:center; }
+    h2 { font-size:30px; }
+    section { padding:60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/app-icon.png" alt="">Kfanly<b>.</b></a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#seasons">Seasons</a>
+      <a href="#faq">FAQ</a>
+      <a class="keep" href="#support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">📱 Coming soon to iPhone</span>
+      <h1>Learn the Korean<br>you hear in K-pop<br>&amp; K-dramas</h1>
+      <p class="lead">Fan phrases, drama lines and everyday Korean — one bite-size episode at a time, with games, streaks and Bongi, your lightstick study buddy.</p>
+      <div class="cta">
+        <a class="btn white" href="https://www.instagram.com/kfanly.app/" rel="noopener">💜 Follow for launch news</a>
+        <a class="btn ghost" href="#features">See what’s inside</a>
+      </div>
+      <div class="soon">Available in English, Español, Français, 简体中文 and 日本語.</div>
+    </div>
+    <div class="hero-art"><img src="/bongi.jpg" alt="Bongi, Kfanly's lightstick mascot, smiling"></div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="kicker">Why Kfanly</div>
+    <h2>Korean that actually matters to fans</h2>
+    <p class="sub">Not textbook sentences — the words you hear on stage, in dramas and in fan comments, from 최애 and 대박 to “좋은 꿈 꿔요”.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">한</div><h3>Read Hangul in a day</h3><p>Start from zero with the Pilot season and read Korean letters in about 30 minutes.</p></div>
+      <div class="card"><div class="ico">🎤</div><h3>Real fan phrases</h3><p>Comment like a fan, cheer your bias, write birthday messages and fan letters.</p></div>
+      <div class="card"><div class="ico">🧩</div><h3>Build real sentences</h3><p>Put word blocks in order, type with the built-in Hangul keyboard, and learn by listening.</p></div>
+      <div class="card"><div class="ico">🎮</div><h3>Feels like a game</h3><p>Lightstick lives, combos, fan-chant ENCORE, FEVER mode, arcade games and grades.</p></div>
+      <div class="card"><div class="ico">🔥</div><h3>Daily habits that stick</h3><p>Streaks, daily missions, smart review and a friendly daily reminder from Bongi.</p></div>
+      <div class="card"><div class="ico">🔒</div><h3>Private by design</h3><p>No account, no ads, no tracking. Your progress stays on your phone.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="seasons" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Episodes like a K-drama</div>
+    <h2>Pilot + 7 seasons at launch</h2>
+    <p class="sub">39 episodes and 238 phrases, with a new season planned every month. Episode 1 of every season is free to try.</p>
+    <div class="seasons">
+      <div class="season"><small>PILOT · FREE</small><b>Read Hangul in One Day</b><span>ㅏ ㅓ ㅗ · 가 나 다</span></div>
+      <div class="season"><small>SEASON 1 · FREE</small><b>First Hello</b><span>안녕하세요 · 감사합니다</span></div>
+      <div class="season"><small>SEASON 2</small><b>Fan Talk</b><span>최애 · 대박 · 사랑해요</span></div>
+      <div class="season"><small>SEASON 3</small><b>Drama Korean</b><span>진짜? · 가지 마 · 첫눈</span></div>
+      <div class="season"><small>SEASON 4</small><b>Your First Sentences</b><span>저는 … 이에요 · 좋아해요</span></div>
+      <div class="season"><small>SEASON 5</small><b>Idol’s Day</b><span>연습해요 · 좋은 꿈 꿔요</span></div>
+      <div class="season"><small>SEASON 6</small><b>Concert Night</b><span>떼창 · 앵콜 · 갔어요</span></div>
+      <div class="season"><small>SEASON 7</small><b>Seoul Trip &amp; Merch</b><span>주세요 · 얼마예요?</span></div>
+    </div>
+    <div class="langs">
+      <span class="lang">🇺🇸 English</span><span class="lang">🇪🇸 Español</span><span class="lang">🇫🇷 Français</span><span class="lang">🇨🇳 简体中文</span><span class="lang">🇯🇵 日本語</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="bongi-band">
+      <img src="/bongi.jpg" alt="">
+      <div>
+        <div class="kicker" style="color:#FFB0D3">Meet Bongi</div>
+        <h2>Your lightstick study buddy</h2>
+        <p>Bongi cheers when you nail a sentence, waves through FEVER mode, and sends one friendly nudge a day so your streak never goes dark. 안녕! 💜</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">FAQ</div>
+    <h2>Questions</h2>
+    <details><summary>When can I download Kfanly?</summary><p>Kfanly is coming soon to the App Store for iPhone. Follow <a href="https://www.instagram.com/kfanly.app/" rel="noopener">@kfanly.app</a> to hear the moment it launches.</p></details>
+    <details><summary>Is it free?</summary><p>Yes — the Pilot and Season 1, plus Episode 1 of every season, are free. Kfanly Pro unlocks every episode and new seasons as they’re released, with a 7-day free trial.</p></details>
+    <details><summary>I can’t read Hangul yet. Is that okay?</summary><p>Absolutely. The Pilot season teaches Hangul from zero in about 30 minutes, with audio for every letter.</p></details>
+    <details><summary>Do I need an account?</summary><p>No. Kfanly works without signing up, and your learning data stays on your device. See our <a href="/privacy.html">Privacy Policy</a>.</p></details>
+    <details><summary>How do I cancel my subscription?</summary><p>Subscriptions are managed by Apple: open Settings › your name › Subscriptions on your iPhone and choose Kfanly.</p></details>
+  </div>
+</section>
+
+<section id="support" style="padding-top:0">
+  <div class="wrap">
+    <div class="support">
+      <div>
+        <h3>Need help?</h3>
+        <p>We usually reply within 1–2 business days.</p>
+      </div>
+      <a class="btn white" style="background:var(--brand);color:#fff" href="mailto:support@kfanly.com">✉️ support@kfanly.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="y">2026</span> ApexGrowth Corp. · California, USA</div>
+    <div>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Terms of Use</a>
+      <a href="mailto:hello@kfanly.com">hello@kfanly.com</a>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
